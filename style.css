@@ -1,0 +1,818 @@
+/* =========================================================
+   ESTILOS GERAIS E RESET
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden; /* Garante que o conteúdo não vaze horizontalmente */
+  width: 100%;
+  padding-top: 120px; /* Espaço para o header fixo */
+}
+
+/* Impede rolagem ao abrir menu */
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* =========================================================
+   HEADER (TOPO FIXO E MENU DESKTOP)
+   ========================================================= */
+
+.topo {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 120px; /* Definido no HTML, agora consolidado */
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  transition: background-color 0.5s ease, box-shadow 0.5s ease,
+    backdrop-filter 0.5s ease;
+  z-index: 1000;
+}
+
+.topo.scrolled {
+  background-color: rgba(255, 255, 255, 0.967);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.logo img {
+  margin-top: 20px;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.menu a {
+  color: #0f0857;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.menu a:hover {
+  color: #4a90e2;
+  text-decoration: underline;
+}
+
+/* ICONES REDES SOCIAIS TOPO */
+.redes a {
+  color: #0f0857;
+  margin-left: 20px;
+  font-size: 1.7em;
+  transition: color 0.3s;
+}
+.redes a:hover {
+  color: #4a90e2;
+}
+
+/* =========================================================
+   MENU HAMBURGUER (MOBILE)
+   ========================================================= */
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 1001; /* Maior que o menu para o toggle ficar por cima */
+  position: relative;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #0f0857;
+  border-radius: 3px;
+  transition: all 0.4s ease;
+}
+
+/* ICONE X (Estado ativo) */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+/* Corrigido o espaço (translate (7px, -7px) -> translate(7px, -7px)) */
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* =========================================================
+   SECAO IMAGEM HERO
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* A propriedade 'filter: 80%' não é válida sozinha. 
+     Se o objetivo é escurecer a imagem, use 'filter: brightness(80%);' 
+     ou 'opacity: 0.8;' no elemento, ou um '::before' com 'background-color: rgba(0,0,0,0.2)'.
+     Mantendo como estava, mas deve ser revisado se não fizer o efeito desejado. */
+  filter: 80%;
+}
+
+.texto-hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+}
+
+.texto-hero h1 {
+  font-size: 2.8em;
+  font-weight: 600;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.btn-hero {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  background-color: #0f0857;
+  color: white;
+  font-size: 1.1em;
+  font-weight: 500;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px #0f0857;
+}
+.btn-hero:hover {
+  background-color: #4a90e2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================================================
+   SECAO SERVICOS
+   ========================================================= */
+
+.servicos {
+  padding: 80px 40px;
+  background-color: #f8f8ff;
+  text-align: center;
+}
+.titulo-secao {
+  font-size: 2.2em;
+  color: #0f0857;
+  margin-bottom: 50px;
+  font-weight: 600;
+  position: relative;
+}
+.conteiner-servicos {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* CADA CAIXA DE SERVIÇO */
+.caixa-servico {
+  background-color: #f5f5f5;
+  padding: 40px 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  transition: all 0.3s ease;
+}
+
+.caixa-servico:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.caixa-servico i {
+  font-size: 3em;
+  color: #0f0857;
+  margin-bottom: 15px;
+}
+.caixa-servico h3 {
+  font-size: 1.3em;
+  color: #0f0857;
+  margin-bottom: 10px;
+}
+.caixa-servico p {
+  font-size: 1.1em;
+  color: black;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* =========================================================
+   SECAO SOBRE
+   ========================================================= */
+
+.sobre {
+  padding: 100px 40px;
+}
+
+.conteiner-sobre {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.imagem-sobre {
+  flex: 1;
+  min-width: 300px;
+}
+
+.imagem-sobre img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.texto-sobre {
+  flex: 1;
+  min-width: 300px;
+}
+
+.texto-sobre h4 {
+  font-size: 1em;
+  color: #0f0857;
+  background-color: #4a90e2;
+  border-radius: 5px;
+  padding: 5px 5px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 300;
+  box-shadow: 1px 1px 1px black;
+  width: max-content;
+}
+
+.texto-sobre h2 {
+  font-size: 2.1em;
+  color: #0f0857;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.texto-sobre p {
+  font-size: 1.3em;
+  color: black;
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   SECAO DIFERENCIAL
+   ========================================================= */
+
+.diferencial {
+  padding: 100px 40px;
+  background-color: #f8f8ff;
+  flex-grow: 1;
+}
+
+.texto-diferencial {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.texto-diferencial > h4 {
+  color: #0f0857;
+  background-color: #4a90e2;
+  border-radius: 5px;
+  padding: 5px 5px;
+  margin: 0 auto 20px 0; /* Ajuste para alinhamento em desktop */
+  font-weight: 300;
+  box-shadow: 1px 1px 1px black;
+  width: max-content;
+  text-align: left;
+}
+
+.texto-diferencial h1 {
+  font-size: 2.1em;
+  color: #0f0857;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.conteiner-diferencial {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  gap: 30px;
+  padding: 40px 20px;
+  flex-wrap: wrap; /* Para garantir quebra em telas menores */
+}
+
+/* Separador vertical entre as caixas (apenas em desktop) */
+.conteiner-diferencial .diferenciais:not(:last-child) {
+  border-right: 1px solid black;
+  padding-right: 20px;
+}
+
+.diferenciais {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* ANIMAÇÃO DO ÍCONE */
+@keyframes pendulo {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(18deg);
+  }
+  50% {
+    transform: rotate(-14deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.diferenciais i {
+  font-size: 3em;
+  color: #0f0857;
+  margin-bottom: 15px;
+  display: inline-block;
+  transform-origin: 50% 5%;
+  transition: transform 0.4s;
+}
+
+.diferenciais:hover i {
+  animation: pendulo 0.8s ease-in-out;
+}
+
+.diferenciais h4 {
+  font-size: 1.3em;
+  color: #0f0857;
+  margin-bottom: 10px;
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+
+.diferenciais:hover h4 {
+  color: #4a90e2;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.361);
+}
+
+.diferenciais p {
+  font-size: 1.1em;
+  color: black;
+  line-height: 1.5;
+  text-align: justify;
+  transition: transform 0.8s;
+}
+
+.diferenciais:hover p {
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   FOOTER (RODAPÉ)
+   ========================================================= */
+
+.footer {
+  background-color: white;
+  color: #0f0857;
+  padding: 80px 40px 40px; /* Adicionado padding lateral */
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer h1 {
+  font-size: 2em;
+  margin-bottom: 40px;
+  color: #0f0857;
+}
+
+/* FORMULARIO */
+.form-contato {
+  background-color: #f8f8ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto 50px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.225);
+  border: 1px solid rgba(0, 0, 0, 0.196);
+  padding: 20px;
+  border-radius: 20px;
+}
+.form-contato input,
+.form-contato textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #bcbbbb;
+  border-radius: 10px;
+  font-size: 1em;
+}
+.form-contato button {
+  background-color: #0f0857;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-contato button:hover {
+  background-color: #4a90e2;
+}
+
+/* CONTATOS */
+.info-contato {
+  margin-top: 20px;
+  font-size: 1em;
+  line-height: 1.8;
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 20px; /* Adicionado padding para separar do redes */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.info-contato i {
+  margin-right: 8px;
+  color: #0f0857;
+}
+
+.info-contato a {
+  color: #0f0857;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.info-contato a:hover {
+  color: #4a90e2;
+}
+
+/* ICONES SOCIAIS FOOTER */
+.footer-redes {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 25px;
+}
+
+.footer-redes a {
+  color: #0f0857;
+  font-size: 1.7em;
+  transition: color 0.3s;
+  margin: 15px;
+}
+.footer-redes a:hover {
+  color: #4a90e2;
+}
+
+/* DIREITOS AUTORAIS */
+.copyright {
+  background-color: #f8f8ff;
+  padding: 15px 40px; /* Ajuste no padding */
+  width: 100%;
+  margin: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between; /* Ajustado para melhor distribuição */
+  align-items: center;
+  max-width: 100%;
+}
+
+.copyright img {
+  width: 150px; /* Reduzido um pouco para melhor visualização em telas menores */
+  height: auto;
+}
+
+.copyright p {
+  color: #0f0857;
+  font-size: 0.9em;
+}
+
+/* =========================================================
+   CHAT WHATSAPP FLUTUANTE
+   ========================================================= */
+
+.whatsapp-chat {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 15px;
+  width: 260px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  transform: translateY(0);
+  font-family: Arial, Helvetica, sans-serif;
+  z-index: 999;
+}
+
+/* Efeito 'sobe' ao passar o mouse */
+.whatsapp-chat:hover {
+  transform: translateY(-10px);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #1ebe5d;
+  padding: 10px;
+  cursor: pointer;
+}
+.chat-header .foto-chat {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.info-chat {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-chat h4 {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.info-chat i {
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+/* CORPO DA CAIXA (Inicialmente oculto) */
+.chat-body {
+  padding: 15px;
+  background-color: #25d366;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+/* MOSTRA O CORPO AO PASSAR O MOUSE (ou use JavaScript para toggle) */
+.whatsapp-chat:hover .chat-body {
+  opacity: 1;
+  height: 160px;
+}
+
+.chat-body p {
+  margin: 0 0 5px 0;
+  color: rgb(91, 91, 91);
+  font-weight: normal;
+  text-align: center;
+}
+
+.chat-body textarea {
+  width: 100%;
+  height: 80px;
+  resize: none;
+  border-radius: 8px;
+  border: none;
+  padding: 5px;
+  outline: none;
+  font-size: 0.9em;
+  color: black;
+}
+
+.chat-body button {
+  width: 80px;
+  margin-top: 5px;
+  background-color: white;
+  color: black;
+  border: 1px solid #bdbcbc;
+  border-radius: 5px;
+  padding: 6px 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.chat-body button:hover {
+  background-color: #e4e3e3;
+}
+
+/* =========================================================
+   ESTILO DA PÁGINA DE OBRIGADO (Se usada separadamente)
+   ========================================================= */
+
+.obrigado-body {
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f8ff;
+  color: #0f0857;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+.obrigado-body h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+.obrigado-body p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+.obrigado-body a {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #0f0857;
+  color: white;
+  font-size: 1.1em;
+  font-weight: 500;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 1px #0f0857;
+}
+.obrigado-body a:hover {
+  background-color: #4a90e2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================================================
+   RESPONSIVIDADE E AJUSTES GERAIS (Telas até 900px)
+   ========================================================= */
+
+@media (max-width: 900px) {
+  /* HEADER E NAVEGAÇÃO */
+  .topo {
+    padding: 15px 25px;
+    height: 100px;
+  }
+  body {
+    padding-top: 100px;
+  }
+  .redes {
+    display: none; /* Oculta ícones no header no mobile */
+  }
+
+  /* MENU HAMBURGUER */
+  .menu-toggle {
+    display: flex; /* Exibe o botão */
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    transition: left 0.4s ease;
+    z-index: 1050; /* Maior que o topo */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .menu.active {
+    left: 0;
+  }
+  .menu ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .menu a {
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+
+  /* CORREÇÕES GERAIS DE LAYOUT */
+  .servicos,
+  .sobre,
+  .diferencial,
+  .footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* SEÇÃO SOBRE */
+  .conteiner-sobre {
+    gap: 30px;
+    text-align: center;
+  }
+  .texto-sobre h4 {
+    margin: 0 auto 20px; /* Centraliza o 'Sobre mim' */
+  }
+
+  /* SEÇÃO DIFERENCIAL */
+  .conteiner-diferencial {
+    flex-direction: column;
+    padding: 20px 0;
+  }
+  /* Remove o separador vertical no mobile */
+  .conteiner-diferencial .diferenciais:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid black; /* Adiciona separador horizontal */
+    padding-right: 0;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+  .texto-diferencial > h4 {
+    margin: 0 auto 20px; /* Centraliza */
+  }
+  .diferenciais p {
+    text-align: center; /* Centraliza o texto no mobile */
+  }
+
+  /* FOOTER */
+  .copyright {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+}
+
+/* AJUSTES TAMANHO DAS FONTES (Telas até 480px) */
+@media (max-width: 480px) {
+  .texto-hero h1 {
+    font-size: 1.8em;
+  }
+  .btn-hero {
+    font-size: 0.9em;
+    padding: 10px 22px;
+  }
+  .titulo-secao {
+    font-size: 1.6em;
+  }
+  .texto-sobre h2,
+  .texto-diferencial h1 {
+    font-size: 1.8em;
+  }
+  .texto-sobre p,
+  .diferenciais p {
+    font-size: 1em;
+  }
+  .caixa-servico {
+    min-width: 100%;
+    width: 100%;
+  }
+}
