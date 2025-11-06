@@ -142,7 +142,7 @@ body.menu-open {
      Se o objetivo é escurecer a imagem, use 'filter: brightness(80%);' 
      ou 'opacity: 0.8;' no elemento, ou um '::before' com 'background-color: rgba(0,0,0,0.2)'.
      Mantendo como estava, mas deve ser revisado se não fizer o efeito desejado. */
-  filter: 80%;
+  filter: brightness(80%);
 }
 
 .texto-hero {
