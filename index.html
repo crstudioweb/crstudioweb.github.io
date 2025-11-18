@@ -200,7 +200,9 @@
           action="https://formspree.io/f/mvgvdppo"
           method="post"
           class="form-contato"
+          onsubmit="return enviarFormulario()"
         >
+          <!--adicionado o onsubmit="return enviarFormulario()"-->
           <input type="text" name="nome" placeholder="Seu Nome" required />
           <input type="email" name="email" placeholder="Seu E-mail" required />
           <textarea
@@ -341,5 +343,32 @@
         }
       });
     </script>
+
+    <!--adiconado script comeco aqui-->
+
+    <script>
+      function enviarFormulario() {
+        // envia o formulário
+        fetch("https://formspree.io/f/mvgvdppo", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nome: document.querySelector('input[name="nome"]').value,
+            email: document.querySelector('input[name="email"]').value,
+            mensagem: document.querySelector('textarea[name="mensagem"]').value,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // redireciona para a página de agradecimento
+            window.open("obrigado.html", "_blank");
+          })
+          .catch((error) => console.error(error));
+        return false;
+      }
+    </script>
+    <!--termina aqui-->
   </body>
 </html>
